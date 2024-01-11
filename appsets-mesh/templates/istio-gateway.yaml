@@ -1,32 +1,36 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: istio-base
+  name: istio-gateway
   namespace: argocd
 spec:
   generators:
     - clusters: {}
   template:
     metadata:
-      name: 'istio-base'
+      name: 'istio-gateway'
       labels:
-        app: istio-base
+        app: istio-gateway
     spec:
       destination:
-        namespace: istio-system 
+        namespace: istio-ingress 
         name: in-cluster
       project: default
       sources:
       - repoURL: 'https://istio-release.storage.googleapis.com/charts'
-        chart: base
+        chart: gateway
         targetRevision: 1.20.2
         helm:
           valueFiles:
-          - $values/_values/istio-base.yaml
+          - $values/_values/istio-gateway.yaml
       - repoURL: 'https://github.com/nailabx/helm-charts.git'
         targetRevision: HEAD
         ref: values
       syncPolicy:
+        managedNamespaceMetadata:
+          labels: # The labels to set on the application namespace
+            istio-injection: enabled
+            you: like
         automated:
           prune: true
           selfHeal: true

@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: istio-base
+  name: istio-istiod
   namespace: argocd
 spec:
   generators:
     - clusters: {}
   template:
     metadata:
-      name: 'istio-base'
+      name: 'istio-istiod'
       labels:
-        app: istio-base
+        app: istio-istiod
     spec:
       destination:
         namespace: istio-system 
@@ -18,11 +18,11 @@ spec:
       project: default
       sources:
       - repoURL: 'https://istio-release.storage.googleapis.com/charts'
-        chart: base
+        chart: istiod
         targetRevision: 1.20.2
         helm:
           valueFiles:
-          - $values/_values/istio-base.yaml
+          - $values/_values/istio-istiod.yaml
       - repoURL: 'https://github.com/nailabx/helm-charts.git'
         targetRevision: HEAD
         ref: values
