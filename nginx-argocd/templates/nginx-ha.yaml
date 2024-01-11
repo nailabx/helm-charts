@@ -1,31 +1,35 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
   name: nginx-ha
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
-  destination:
-    namespace: test
-    name: in-cluster
-  project: default
-  sources:
-  - chart: nginx-ha
-    repoURL: 'https://github.com/nailabx/helm-charts.git'
-    targetRevision: 0.0.1
-    helm:
-      releaseName: nginx-ha
-#   source:
-#     path: kubernetes/resources/crossplane/
-#     repoURL: https://github.com/nailabx/helm-charts.git
-#     targetRevision: main
-#     helm:
-#       valueFiles:
-#         - values.yaml
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: 'nginx-ha'
+      labels:
+        app: nginx-ha
+    spec:
+      destination:
+        namespace: test
+        name: in-cluster
+      project: default
+      sources:
+      - repoURL: 'https://github.com/nailabx/helm-charts'
+        path: nginx-ha
+        chart: nginx-ha
+        targetRevision: 0.1.0
+        helm:
+          valueFiles:
+          - $values/nginx-ha/values.yaml
+      - repoURL: 'https://github.com/nailabx/helm-charts.git'
+        targetRevision: HEAD
+        ref: values
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
