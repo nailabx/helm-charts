@@ -3,7 +3,7 @@ entries:
   appsets-mesh:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T02:18:04.979201-06:00"
+    created: "2024-01-11T02:29:30.301687-06:00"
     description: A Helm chart for Kubernetes
     digest: ba7b1ad29b6ec2a2c76f98ecf6bb17940ab01082bba8aae9fae6e03248ce7af4
     name: appsets-mesh
@@ -14,7 +14,7 @@ entries:
   bookinfo:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T02:18:04.979491-06:00"
+    created: "2024-01-11T02:29:30.301944-06:00"
     description: A Helm chart for Kubernetes
     digest: a798523ad9820ff15912aa3098be30cb6f4daa6682458a34a5d65076569c0045
     name: bookinfo
@@ -25,9 +25,9 @@ entries:
   nginx-argocd:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T02:18:04.979926-06:00"
+    created: "2024-01-11T02:29:30.304831-06:00"
     description: A Helm chart for Kubernetes
-    digest: 6a4ad479cb5c235522cf321a52baf02382c8439045d1338198aa01a1baea7b86
+    digest: fe1790127d2b9e1cde0701068ca69219d4cea55a148372e9a65d9cb0a0a77403
     name: nginx-argocd
     type: application
     urls:
@@ -35,7 +35,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T02:18:04.979715-06:00"
+    created: "2024-01-11T02:29:30.304487-06:00"
     description: A Helm chart for Kubernetes
     digest: c9c24e0105402d6672cec60b79bb2b8260a9a11f5c67d5e6992c057c6ae44e0a
     name: nginx-argocd
@@ -46,7 +46,7 @@ entries:
   nginx-ha:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T02:18:04.980358-06:00"
+    created: "2024-01-11T02:29:30.305253-06:00"
     description: A Helm chart for Kubernetes
     digest: 6c97fd9e3a637ef3085f335812eec2bb0dacf1fb01f14a3ae22a89e26585b503
     name: nginx-ha
@@ -54,4 +54,4 @@ entries:
     urls:
     - https://nailabx.github.io/helm-charts/nginx-ha-0.1.0.tgz
     version: 0.1.0
-generated: "2024-01-11T02:18:04.978746-06:00"
+generated: "2024-01-11T02:29:30.301292-06:00"
