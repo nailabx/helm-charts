@@ -13,7 +13,7 @@ spec:
         app: bookinfo
     spec:
       destination:
-        namespace: test
+        namespace: apps
         name: in-cluster
       project: default
       sources:
