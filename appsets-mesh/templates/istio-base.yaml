@@ -1,29 +1,28 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: nginx-ha
+  name: istio-base
   namespace: argocd
 spec:
   generators:
     - clusters: {}
   template:
     metadata:
-      name: 'nginx-ha'
+      name: 'istio-base'
       labels:
-        app: nginx-ha
+        app: istio-base
     spec:
       destination:
-        namespace: test
+        namespace: istio-system 
         name: in-cluster
       project: default
       sources:
       - repoURL: 'https://nailabx.github.io/helm-charts'
-        path: nginx-ha
-        chart: nginx-ha
+        chart: istio
         targetRevision: 0.1.0
         helm:
           valueFiles:
-          - $values/_values/values.yaml
+          - $values/_values/istio-base.yaml
       - repoURL: 'https://github.com/nailabx/helm-charts.git'
         targetRevision: HEAD
         ref: values
