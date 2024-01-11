@@ -3,23 +3,23 @@ entries:
   nginx-argocd:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T00:21:17.856307-06:00"
+    created: "2024-01-11T00:30:10.546315-06:00"
     description: A Helm chart for Kubernetes
     digest: c9c24e0105402d6672cec60b79bb2b8260a9a11f5c67d5e6992c057c6ae44e0a
     name: nginx-argocd
     type: application
     urls:
-    - https://github.com/nailabx/helm-charts/nginx-argocd-0.1.0.tgz
+    - https://nailabx.github.io/helm-charts/nginx-argocd-0.1.0.tgz
     version: 0.1.0
   nginx-ha:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T00:21:17.858165-06:00"
+    created: "2024-01-11T00:30:10.546756-06:00"
     description: A Helm chart for Kubernetes
     digest: 6c97fd9e3a637ef3085f335812eec2bb0dacf1fb01f14a3ae22a89e26585b503
     name: nginx-ha
     type: application
     urls:
-    - https://github.com/nailabx/helm-charts/nginx-ha-0.1.0.tgz
+    - https://nailabx.github.io/helm-charts/nginx-ha-0.1.0.tgz
     version: 0.1.0
-generated: "2024-01-11T00:21:17.855909-06:00"
+generated: "2024-01-11T00:30:10.545952-06:00"
