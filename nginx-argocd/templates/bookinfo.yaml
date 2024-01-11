@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: bookinfo
+  namespace: argocd
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: 'bookinfo'
+      labels:
+        app: bookinfo
+    spec:
+      destination:
+        namespace: test
+        name: in-cluster
+      project: default
+      sources:
+      - repoURL: 'https://nailabx.github.io/helm-charts'
+        path: bookinfo
+        chart: bookinfo
+        targetRevision: 0.1.0
+        helm:
+          valueFiles:
+          - $values/_values/bookinfo.yaml
+      - repoURL: 'https://github.com/nailabx/helm-charts.git'
+        targetRevision: HEAD
+        ref: values
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

@@ -3,7 +3,7 @@ entries:
   appsets-mesh:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T01:43:02.027648-06:00"
+    created: "2024-01-11T02:08:10.122602-06:00"
     description: A Helm chart for Kubernetes
     digest: ba7b1ad29b6ec2a2c76f98ecf6bb17940ab01082bba8aae9fae6e03248ce7af4
     name: appsets-mesh
@@ -11,12 +11,23 @@ entries:
     urls:
     - https://nailabx.github.io/helm-charts/appsets-mesh-0.1.0.tgz
     version: 0.1.0
+  bookinfo:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-01-11T02:08:10.122897-06:00"
+    description: A Helm chart for Kubernetes
+    digest: a798523ad9820ff15912aa3098be30cb6f4daa6682458a34a5d65076569c0045
+    name: bookinfo
+    type: application
+    urls:
+    - https://nailabx.github.io/helm-charts/bookinfo-0.1.0.tgz
+    version: 0.1.0
   nginx-argocd:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T01:43:02.02827-06:00"
+    created: "2024-01-11T02:08:10.123413-06:00"
     description: A Helm chart for Kubernetes
-    digest: 4cca97063f107314b864de236cfc66604363aa787e3058cb3cd576569e6f28bb
+    digest: 9ca2de2bd4f0910e1df80ddf5a3cf8504c2eb156b304a773babe4ca3552a0b2c
     name: nginx-argocd
     type: application
     urls:
@@ -24,7 +35,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T01:43:02.027931-06:00"
+    created: "2024-01-11T02:08:10.123143-06:00"
     description: A Helm chart for Kubernetes
     digest: c9c24e0105402d6672cec60b79bb2b8260a9a11f5c67d5e6992c057c6ae44e0a
     name: nginx-argocd
@@ -35,7 +46,7 @@ entries:
   nginx-ha:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T01:43:02.029989-06:00"
+    created: "2024-01-11T02:08:10.123812-06:00"
     description: A Helm chart for Kubernetes
     digest: 6c97fd9e3a637ef3085f335812eec2bb0dacf1fb01f14a3ae22a89e26585b503
     name: nginx-ha
@@ -43,4 +54,4 @@ entries:
     urls:
     - https://nailabx.github.io/helm-charts/nginx-ha-0.1.0.tgz
     version: 0.1.0
-generated: "2024-01-11T01:43:02.02745-06:00"
+generated: "2024-01-11T02:08:10.121612-06:00"
