@@ -17,7 +17,7 @@ spec:
         name: in-cluster
       project: default
       sources:
-      - repoURL: 'https://github.com/nailabx/helm-charts'
+      - repoURL: 'https://nailabx.github.io/helm-charts'
         path: nginx-ha
         chart: nginx-ha
         targetRevision: 0.1.0
