@@ -28,6 +28,9 @@ spec:
         targetRevision: HEAD
         ref: values
       syncPolicy:
+        managedNamespaceMetadata:
+          labels: # The labels to set on the application namespace
+            istio-injection: enabled
         automated:
           prune: true
           selfHeal: true
