@@ -19,7 +19,7 @@ spec:
       sources:
       - repoURL: 'https://nailabx.github.io/helm-charts'
         chart: istio
-        targetRevision: 0.1.0
+        targetRevision: 1.20.2
         helm:
           valueFiles:
           - $values/_values/istio-base.yaml
