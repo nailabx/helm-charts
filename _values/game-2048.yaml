@@ -3,4 +3,5 @@ ngrok:
 game:
   replicas: 2
   namespace: apps
-  image: public.ecr.aws/l6m2t8p7/docker-2048:latest
+  image: nginx
+  # image: public.ecr.aws/l6m2t8p7/docker-2048:latest
