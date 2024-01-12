@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: alexwhen/docker-2048
+          image: {{ .Values.game.image }}
           ports:
             - name: http
               containerPort: 80
