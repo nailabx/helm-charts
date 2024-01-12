@@ -1,0 +1,5 @@
+ngrok:
+  domain: broadly-genuine-anchovy.ngrok-free.app
+game:
+  replicas: 2
+  namespace: apps
