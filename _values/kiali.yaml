@@ -1,119 +1,118 @@
-nameOverride: ""
-fullnameOverride: ""
+# 'fullnameOverride' is deprecated. Use 'deployment.instance_name' instead.
+# This is only supported for backward compatibility and will be removed in a future version.
+# If 'fullnameOverride' is not "kiali" and 'deployment.instance_name' is "kiali",
+# then 'deployment.instance_name' will take the value of 'fullnameOverride' value.
+# Otherwise, 'fullnameOverride' is ignored and 'deployment.instance_name' is used.
+fullnameOverride: "kiali"
 
-image: # see: https://quay.io/repository/kiali/kiali-operator?tab=tags
-  repo: quay.io/kiali/kiali-operator # quay.io/kiali/kiali-operator
-  tag: v1.78.0 # version string like v1.39.0 or a digest hash
-  digest: "" # use "sha256" if tag is a sha256 hash (do NOT prefix this value with a "@")
-  pullPolicy: Always
-  pullSecrets: []
+# This is required for "openshift" auth strategy.
+# You have to know ahead of time what your Route URL will be because
+# right now the helm chart can't figure this out at runtime (it would
+# need to wait for the Kiali Route to be deployed and for OpenShift
+# to start it up). If someone knows how to update this helm chart to
+# do this, a PR would be welcome.
+kiali_route_url: ""
 
-# Deployment options for the operator pod.
-nodeSelector: {}
-podAnnotations: {}
-podLabels: {}
-env: []
-tolerations: []
-resources:
-  requests:
-    cpu: "10m"
-    memory: "64Mi"
-affinity: {}
-replicaCount: 1
-priorityClassName: ""
-securityContext: {}
+#
+# Settings that mimic the Kiali CR which are placed in the ConfigMap.
+# Note that only those values used by the Helm Chart will be here.
+#
 
-# metrics.enabled: set to true if you want Prometheus to collect metrics from the operator
-metrics:
-  enabled: true
+additional_display_details:
+- annotation: kiali.io/api-spec
+  icon_annotation: kiali.io/api-type
+  title: API Documentation
 
-# debug.enabled: when true the full ansible logs are dumped after each reconciliation run
-# debug.verbosity: defines the amount of details the operator will log (higher numbers are more noisy)
-# debug.enableProfiler: when true (regardless of debug.enabled), timings for the most expensive tasks will be logged after each reconciliation loop
-debug:
-  enabled: true
-  verbosity: "1"
-  enableProfiler: false
+istio_namespace: "istio-system" # default is where Kiali is installed
 
-# Defines where the operator will look for Kial CR resources. "" means "all namespaces".
-watchNamespace: ""
+auth:
+  openid: {}
+  openshift: {}
+  strategy: "anonymous"
 
-# Set to true if you want the operator to be able to create cluster roles. This is necessary
-# if you want to support Kiali CRs with spec.deployment.accessible_namespaces of '**'.
-# Setting this to "true" requires allowAllAccessibleNamespaces to be "true" also.
-# Note that this will be overriden to "true" if cr.create is true and cr.spec.deployment.accessible_namespaces is ['**'].
-clusterRoleCreator: true
+deployment:
+  # This only limits what Kiali will attempt to see, but Kiali Service Account has permissions to see everything.
+  # For more control over what the Kial Service Account can see, use the Kiali Operator
+  accessible_namespaces:
+  - "**"
+  additional_service_yaml: {}
+  affinity:
+    node: {}
+    pod: {}
+    pod_anti: {}
+  configmap_annotations: {}
+  custom_secrets: []
+  host_aliases: []
+  hpa:
+    api_version: "autoscaling/v2"
+    spec: {}
+  image_digest: "" # use "sha256" if image_version is a sha256 hash (do NOT prefix this value with a "@")
+  image_name: quay.io/kiali/kiali
+  image_pull_policy: "Always"
+  image_pull_secrets: []
+  image_version: v1.78.0 # version like "v1.39" (see: https://quay.io/repository/kiali/kiali?tab=tags) or a digest hash
+  ingress:
+    additional_labels: {}
+    class_name: "nginx"
+    #enabled:
+    override_yaml:
+      metadata: {}
+  instance_name: "kiali"
+  logger:
+    log_format: "text"
+    log_level: "info"
+    time_field_format: "2006-01-02T15:04:05Z07:00"
+    sampler_rate: "1"
+  node_selector: {}
+  pod_annotations: {}
+  pod_labels: {}
+  priority_class_name: ""
+  replicas: 1
+  resources:
+    requests:
+      cpu: "10m"
+      memory: "64Mi"
+    limits:
+      memory: "1Gi"
+  secret_name: "kiali"
+  security_context: {}
+  service_annotations: {}
+  service_type: ""
+  tolerations: []
+  version_label: v1.78.0 # v1.39 # v1.39.0 # see: https://quay.io/repository/kiali/kiali?tab=tags
+  view_only_mode: false
 
-# Set to a list of secrets in the cluster that the operator will be allowed to read. This is necessary if you want to
-# support Kiali CRs with spec.kiali_feature_flags.certificates_information_indicators.enabled=true.
-# The secrets in this list will be the only ones allowed to be specified in any Kiali CR (in the setting
-# spec.kiali_feature_flags.certificates_information_indicators.secrets).
-# If you set this to an empty list, the operator will not be given permission to read any additional secrets
-# found in the cluster, and thus will only support a value of "false" in the Kiali CR setting
-# spec.kiali_feature_flags.certificates_information_indicators.enabled.
-secretReader: ['cacerts', 'istio-ca-secret']
+external_services:
+  custom_dashboards:
+    enabled: true
+  istio:
+    root_namespace: ""
 
-# Set to true if you want to allow the operator to only be able to install Kiali in view-only-mode.
-# The purpose for this setting is to allow you to restrict the permissions given to the operator itself.
-onlyViewOnlyMode: false
+identity: {}
+  #cert_file:
+  #private_key_file:
 
-# allowAdHocKialiNamespace tells the operator to allow a user to be able to install a Kiali CR in one namespace but
-# be able to install Kiali in another namespace. In other words, it will allow the Kiali CR spec.deployment.namespace
-# to be something other than the namespace where the CR is installed. You may want to disable this if you are
-# running in a multi-tenant scenario in which you only want a user to be able to install Kiali in the same namespace
-# where the user has permissions to install a Kiali CR.
-allowAdHocKialiNamespace: true
+kiali_feature_flags:
+  certificates_information_indicators:
+    enabled: true
+    secrets:
+    - cacerts
+    - istio-ca-secret
+  clustering:
+    autodetect_secrets:
+      enabled: true
+      label: "kiali.io/multiCluster=true"
+    clusters: []
+  disabled_features: []
+  validations:
+    ignore: ["KIA1301"]
 
-# allowAdHocKialiImage tells the operator to allow a user to be able to install a custom Kiali image as opposed
-# to the image the operator will install by default. In other words, it will allow the
-# Kiali CR spec.deployment.image_name and spec.deployment.image_version to be configured by the user.
-# You may want to disable this if you do not want users to install their own Kiali images.
-allowAdHocKialiImage: false
+login_token:
+  signing_key: ""
 
-# allowAdHocOSSMConsoleImage tells the operator to allow a user to be able to install a custom OSSMC image as opposed
-# to the image the operator will install by default. In other words, it will allow the
-# OSSMConsole CR spec.deployment.imageName and spec.deployment.imageVersion to be configured by the user.
-# You may want to disable this if you do not want users to install their own OSSMC images.
-# This is only applicable when running on OpenShift.
-allowAdHocOSSMConsoleImage: false
-
-# allowSecurityContextOverride tells the operator to allow a user to be able to fully override the Kiali
-# container securityContext. If this is false, certain securityContext settings must exist on the Kiali
-# container and any attempt to override them will be ignored.
-allowSecurityContextOverride: false
-
-# allowAllAccessibleNamespaces tells the operator to allow a user to be able to configure Kiali
-# to access all namespaces in the cluster via spec.deployment.accessible_namespaces=['**'].
-# If this is false, the user must specify an explicit list of namespaces in the Kiali CR.
-# Setting this to "true" requires clusterRoleCreator to be "true" also.
-# Note that this will be overriden to "true" if cr.create is true and cr.spec.deployment.accessible_namespaces is ['**'].
-allowAllAccessibleNamespaces: true
-
-# accessibleNamespacesLabel restricts the namespaces that a user can add to the Kiali CR spec.deployment.accessible_namespaces.
-# This value is either an empty string (which disables this feature) or a label name with an optional label value
-# (e.g. "mylabel" or "mylabel=myvalue"). Only namespaces that have that label will be permitted in
-# spec.deployment.accessible_namespaces. Any namespace not labeled properly but specified in accessible_namespaces will cause
-# the operator to abort the Kiali installation.
-# If just a label name (but no label value) is specified, the label value the operator will look for is the value of
-# the Kiali CR's spec.istio_namespace. In other words, the operator will look for the named label whose value must be the name
-# of the Istio control plane namespace (which is typically, but not necessarily, "istio-system").
-accessibleNamespacesLabel: ""
-
-# For what a Kiali CR spec can look like, see:
-# https://github.com/kiali/kiali-operator/blob/master/deploy/kiali/kiali_cr.yaml
-cr:
-  create: true
-  name: kiali
-  # If you elect to create a Kiali CR (--set cr.create=true)
-  # and the operator is watching all namespaces (--set watchNamespace="")
-  # then this is the namespace where the CR will be created (the default will be the operator namespace).
-  namespace: "istio-system"
-
-  # Annotations to place in the Kiali CR metadata.
-  annotations: {}
-
-  spec:
-    deployment:
-      accessible_namespaces:
-      - '**'
+server:
+  port: 20001
+  metrics_enabled: true
+  metrics_port: 9090
+  web_root: ""
 
