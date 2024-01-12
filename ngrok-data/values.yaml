@@ -1,0 +1,7 @@
+ngrok:
+  secret:
+    apikey: 
+    token: 
+    namespace: default
+  namespace: operations
+
