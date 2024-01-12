@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: ngrok
+  name: ngrok-controller
   namespace: argocd
 spec:
   generators:
     - clusters: {}
   template:
     metadata:
-      name: 'ngrok'
+      name: 'ngrok-controller'
       labels:
-        app: ngrok
+        app: ngrok-controller
     spec:
       destination:
         namespace: operations 
