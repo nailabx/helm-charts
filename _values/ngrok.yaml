@@ -1,0 +1,4 @@
+credentials:
+  secret:
+    name: "ngrok-secret"
+serverAddr: "broadly-genuine-anchovy.ngrok-free.app"
