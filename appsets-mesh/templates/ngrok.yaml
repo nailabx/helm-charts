@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ngrok
+  namespace: argocd
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: 'ngrok'
+      labels:
+        app: ngrok
+    spec:
+      destination:
+        namespace: operations 
+        name: in-cluster
+      project: default
+      sources:
+      - repoURL: 'https://ngrok.github.io/kubernetes-ingress-controller'
+        chart: kubernetes-ingress-controller
+        targetRevision: 0.12.1
+        helm:
+          valueFiles:
+          - $values/_values/ngrok.yaml
+      - repoURL: 'https://github.com/nailabx/helm-charts.git'
+        targetRevision: HEAD
+        ref: values
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
