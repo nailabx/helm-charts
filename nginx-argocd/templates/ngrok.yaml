@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: bookinfo
+  name: ngrok
   namespace: argocd
 spec:
   generators:
     - clusters: {}
   template:
     metadata:
-      name: 'bookinfo'
+      name: 'ngrok'
       labels:
-        app: bookinfo
+        app: ngrok
     spec:
       destination:
         namespace: apps
@@ -18,12 +18,12 @@ spec:
       project: default
       sources:
       - repoURL: 'https://nailabx.github.io/helm-charts'
-        path: bookinfo
-        chart: bookinfo
+        path: ngrok
+        chart: ngrok
         targetRevision: 0.1.0
         helm:
           valueFiles:
-          - $values/_values/bookinfo.yaml
+          - $values/_values/ngrok.yaml
       - repoURL: 'https://github.com/nailabx/helm-charts.git'
         targetRevision: HEAD
         ref: values
