@@ -19,7 +19,7 @@ spec:
       sources:
       - repoURL: 'https://nailabx.github.io/helm-charts'
         chart: ngrok-data
-        targetRevision: 0.1.0
+        targetRevision: 0.1.1
         helm:
           valueFiles:
           - $values/_values/ngrok-data.yaml
