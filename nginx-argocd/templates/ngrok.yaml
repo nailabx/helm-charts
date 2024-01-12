@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ngrok
+  namespace: argocd
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: 'ngrok'
+      labels:
+        app: ngrok
+    spec:
+      destination:
+        namespace: apps
+        name: in-cluster
+      project: default
+      sources:
+      - repoURL: 'https://nailabx.github.io/helm-charts'
+        path: ngrok
+        chart: ngrok
+        targetRevision: 0.1.0
+        helm:
+          valueFiles:
+          - $values/_values/ngrok.yaml
+      - repoURL: 'https://github.com/nailabx/helm-charts.git'
+        targetRevision: HEAD
+        ref: values
+      syncPolicy:
+        managedNamespaceMetadata:
+          labels: # The labels to set on the application namespace
+            istio-injection: enabled
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
