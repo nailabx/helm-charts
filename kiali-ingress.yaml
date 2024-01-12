@@ -1,0 +1,39 @@
+---
+# ngrok Ingress Controller Configuration
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kiali-ingress
+  namespace: istio-system
+spec:
+  ingressClassName: ngrok
+  rules:
+    - host: broadly-genuine-anchovy.ngrok-free.app
+      http:
+        paths:
+          - path: /kiali
+            pathType: Prefix
+            backend:
+              service:
+                name: kiali
+                port:
+                  number: 20001
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-ingress
+  namespace: argocd
+spec:
+  ingressClassName: ngrok
+  rules:
+    - host: broadly-genuine-anchovy.ngrok-free.app
+      http:
+        paths:
+          - path: /argocd
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 80

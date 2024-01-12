@@ -3,7 +3,7 @@ entries:
   appsets-mesh:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.310339-06:00"
+    created: "2024-01-12T10:22:13.016431-06:00"
     description: A Helm chart for Kubernetes
     digest: 6a3196fe3139d4874908790233db6533aa828a5874e77b4f3034b3554c92d1ce
     name: appsets-mesh
@@ -13,7 +13,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.310082-06:00"
+    created: "2024-01-12T10:22:13.016185-06:00"
     description: A Helm chart for Kubernetes
     digest: dc7d53e7d27f77c6e642ee0ffc88ebd4000111ad7e7b4ddaa5cc946d44b17f5a
     name: appsets-mesh
@@ -23,7 +23,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.309657-06:00"
+    created: "2024-01-12T10:22:13.015616-06:00"
     description: A Helm chart for Kubernetes
     digest: de80dc39d56c84c688842f9f3ebdf67135c2d9599e69f58fdf449c5772745bfa
     name: appsets-mesh
@@ -33,7 +33,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.309404-06:00"
+    created: "2024-01-12T10:22:13.015256-06:00"
     description: A Helm chart for Kubernetes
     digest: d96cb730d248c0a492ad6ec243c371b8d71baf78f252843ee0d8f28c4217cf1d
     name: appsets-mesh
@@ -43,7 +43,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.308917-06:00"
+    created: "2024-01-12T10:22:13.014907-06:00"
     description: A Helm chart for Kubernetes
     digest: ba7b1ad29b6ec2a2c76f98ecf6bb17940ab01082bba8aae9fae6e03248ce7af4
     name: appsets-mesh
@@ -51,10 +51,46 @@ entries:
     urls:
     - https://nailabx.github.io/helm-charts/appsets-mesh-0.1.0.tgz
     version: 0.1.0
+  argo-cd:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: DRY cleanup of ServiceAccounts
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v2.9.3
+    created: "2024-01-12T10:22:13.026349-06:00"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.23.0
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: f38547c5b6ac36dcd1e2751379c52eba7f006e4212f1d24cb8af90771ab5f07e
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://nailabx.github.io/helm-charts/argo-cd-5.52.1.tgz
+    version: 5.52.1
   bookinfo:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.310706-06:00"
+    created: "2024-01-12T10:22:13.026874-06:00"
     description: A Helm chart for Kubernetes
     digest: b0645be8fd36f78eb3d361546ce40254dcf88b7af44e70643c2b88d54b8eb40a
     name: bookinfo
@@ -65,7 +101,7 @@ entries:
   game-2048:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.311408-06:00"
+    created: "2024-01-12T10:22:13.0276-06:00"
     description: A Helm chart for Kubernetes
     digest: ccce5963168654ed330e7231d5df83f8f9f9f0702c4fdfe8a25e9c7f06714a59
     name: game-2048
@@ -75,7 +111,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.311059-06:00"
+    created: "2024-01-12T10:22:13.027222-06:00"
     description: A Helm chart for Kubernetes
     digest: ed82f1672bb535a32793ae919b73d03a0aac520490f44f7db9a08cff13d3f826
     name: game-2048
@@ -86,7 +122,7 @@ entries:
   nginx-argocd:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.314526-06:00"
+    created: "2024-01-12T10:22:13.028047-06:00"
     description: A Helm chart for Kubernetes
     digest: 2b70a6b2f1c4624863b949bdf9456d077f86d6ba2d7cc1ee080a9e049c8a0584
     name: nginx-argocd
@@ -96,7 +132,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.314228-06:00"
+    created: "2024-01-12T10:22:13.027819-06:00"
     description: A Helm chart for Kubernetes
     digest: c9c24e0105402d6672cec60b79bb2b8260a9a11f5c67d5e6992c057c6ae44e0a
     name: nginx-argocd
@@ -107,7 +143,7 @@ entries:
   nginx-ha:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.314893-06:00"
+    created: "2024-01-12T10:22:13.028436-06:00"
     description: A Helm chart for Kubernetes
     digest: 6c97fd9e3a637ef3085f335812eec2bb0dacf1fb01f14a3ae22a89e26585b503
     name: nginx-ha
@@ -118,7 +154,7 @@ entries:
   ngrok-data:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.315346-06:00"
+    created: "2024-01-12T10:22:13.028931-06:00"
     description: A Helm chart for Kubernetes
     digest: 5922ca66a085119c3ffe4cdc3e441a444dc87ab60719c519ec66292abecda895
     name: ngrok-data
@@ -128,7 +164,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-11T23:42:05.315111-06:00"
+    created: "2024-01-12T10:22:13.028672-06:00"
     description: A Helm chart for Kubernetes
     digest: 5b8e4a4e3b9bf26ae59eb001c648cac1a9d2fec193049d30964faa5d95498e88
     name: ngrok-data
@@ -136,4 +172,4 @@ entries:
     urls:
     - https://nailabx.github.io/helm-charts/ngrok-data-0.1.0.tgz
     version: 0.1.0
-generated: "2024-01-11T23:42:05.308404-06:00"
+generated: "2024-01-12T10:22:13.014533-06:00"
