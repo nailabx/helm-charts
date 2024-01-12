@@ -1,4 +1,4 @@
 credentials:
   secret:
     name: "ngrok-secret"
-serverAddr: "broadly-genuine-anchovy.ngrok-free.app:443"
+# serverAddr: "broadly-genuine-anchovy.ngrok-free.app:443"
