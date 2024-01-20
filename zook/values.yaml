@@ -1,0 +1,4 @@
+zookeeper:
+  enabled: true
+zookeeper-operator:
+  enabled: true
