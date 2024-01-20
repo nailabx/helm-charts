@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: zook
+  namespace: argocd
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: 'zook'
+      labels:
+        app: zook
+    spec:
+      destination:
+        namespace: operations 
+        name: in-cluster
+      project: default
+      sources:
+      - repoURL: 'https://nailabx.github.io/helm-charts'
+        chart: zook
+        targetRevision: 0.1.0
+        helm:
+          valueFiles:
+          - $values/_values/zook.yaml
+      - repoURL: 'https://github.com/nailabx/helm-charts.git'
+        targetRevision: HEAD
+        ref: values
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
